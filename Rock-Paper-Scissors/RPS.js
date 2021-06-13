@@ -39,63 +39,65 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-//
+//Each button will input Rock, paper, or scissors and start/continue the game. 
 const rockButton = document.querySelector('#rock');
 rockButton.addEventListener('click', function(e) {
-let playerSelection = 'Rock';
-playerSelection;
-let computerSelection = computerPlay();
-playRound(playerSelection, computerSelection);
-
+    let playerSelection = 'Rock';
+        playerSelection;
+    let computerSelection = computerPlay();
+    let roundPoint = playRound(playerSelection, computerSelection);
+        roundPoint;
+        gameScore(roundPoint);
 })
 
 const paperButton = document.querySelector('#paper');
 paperButton.addEventListener('click', function(e) {
-let playerSelection = 'Paper';
-playerSelection;
-let computerSelection = computerPlay();
-playRound(playerSelection, computerSelection);
+    let playerSelection = 'Paper';
+        playerSelection;
+    let computerSelection = computerPlay();
+    let roundPoint = playRound(playerSelection, computerSelection);
+        roundPoint;
+        gameScore(roundPoint);
 })
 
 const scissorsButton = document.querySelector('#scissors');
 scissorsButton.addEventListener('click', function(e) {
-let playerSelection = 'Scissors';
-let computerSelection = computerPlay();
-playRound(playerSelection, computerSelection);
+    let playerSelection = 'Scissors';
+    let computerSelection = computerPlay();
+    let roundPoint = playRound(playerSelection, computerSelection);
+        roundPoint;
+        gameScore(roundPoint);
 })
 
 const results = document.querySelector('#results');
 
-
-//old code(may reuse score tracker)
-//This code will be reformed into something that displays on the webpage for the user to see instead of the console.
 //game will begin keeping track of the scores
 //game will add a point to the winner's score each round
 //game will update the scoreboard
 let playerScore = 0;
 let computerScore = 0;
-function game() {
-    while (playerScore < 5 && computerScore < 5) {
-        
-        //let playerSelection = prompt('Choose! Rock, Paper, Scissors!');
-        //let computerSelection = computerPlay();
-        let roundResult = playRound(playerSelection, computerSelection);
+function gameScore(roundPoint) {
+        let roundResult = roundPoint;
         if (roundResult === 'win') {
             playerScore = ++playerScore;
-            console.log(`Your Score: ${playerScore}, Computer Score: ${computerScore}`);
+            results.append(`Your Score: ${playerScore}, Computer Score: ${computerScore}`);
             if (playerScore === 5) {
-                console.log('You win!');
-                console.log(`Final Score: You: ${playerScore} Computer: ${computerScore}`);
+                results.append('You win!');
+                results.append(`Final Score: You: ${playerScore} Computer: ${computerScore}`);
+                playerScore = 0;
+                computerScore = 0;
             }
         } else if (roundResult !== 'win' && roundResult === 'lose') {
             computerScore = ++computerScore;
-            console.log(`Your Score: ${playerScore}, Computer Score: ${computerScore}`);
+            results.append(`Your Score: ${playerScore}, Computer Score: ${computerScore}`);
             if (computerScore === 5) {
-                console.log('You lose!');
-                console.log(`Final Score: You: ${playerScore} Computer: ${computerScore}`);
+                results.append('You lose!');
+                results.append(`Final Score: You: ${playerScore} Computer: ${computerScore}`);
+                playerScore = 0;
+                computerScore = 0;
             }
         } else {
-            console.log(`The scores remain: ${playerScore} ${computerScore}`);           
+            results.append(`The scores remain: ${playerScore} ${computerScore}`);           
         }
-    }    
+        
 }
