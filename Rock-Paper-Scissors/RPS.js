@@ -17,24 +17,36 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     results.innerText = `You chose: ${playerSelection[0].toUpperCase()}${playerSelection.slice(1)} Computer chose: ${computerSelection}.`;
     if (computerSelection.toUpperCase() == playerSelection.toUpperCase()) {
-        results.append('It\'s a tie!');
+        let newP = document.createElement('p')
+        newP.innerText = 'It\'s a tie!';
+        results.appendChild(newP);
         return 'tie';
     }
     else if (playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'Scissors') {
-        results.append('You won! Rock beats scissors!');
+        let newP = document.createElement('p')
+        newP.innerText = 'You won! Rock beats scissors!';
+        results.appendChild(newP);
         return 'win';
     } else if (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'Rock') {
-        results.append('You won! Paper covers rock!');
+        let newP = document.createElement('p')
+        newP.innerText = 'You won! Paper covers rock!';
+        results.appendChild(newP);
         return 'win';
     } else if (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection == 'Paper') {
-        results.append('You won! Scissors cuts paper!');
+        let newP = document.createElement('p')
+        newP.innerText = 'You won! Scissors cuts paper!';
+        results.appendChild(newP);
         return 'win';
     } else if(playerSelection.toUpperCase() !== 'ROCK' && playerSelection.toUpperCase() !== 'PAPER' && playerSelection.toUpperCase() !== 'SCISSORS') {
-        results.append('Invalid Input!');
+        let newP = document.createElement('p')
+        newP.innerText = 'Invalid Input!';
+        results.appendChild(newP);
         return null;
     }
      else {
-        results.append('You lose! Try again!');
+        let newP = document.createElement('p')
+        newP.innerText = 'You lose! Try again!';
+        results.appendChild(newP);
         return 'lose';
     }
 }
@@ -78,26 +90,41 @@ let playerScore = 0;
 let computerScore = 0;
 function gameScore(roundPoint) {
         let roundResult = roundPoint;
+        let displayScore = document.createElement('p');
         if (roundResult === 'win') {
             playerScore = ++playerScore;
-            results.append(`Your Score: ${playerScore}, Computer Score: ${computerScore}`);
+            displayScore.innerText = `Your Score: ${playerScore}, Computer Score: ${computerScore}`;
+            results.appendChild(displayScore);
             if (playerScore === 5) {
-                results.append('You win!');
-                results.append(`Final Score: You: ${playerScore} Computer: ${computerScore}`);
+                //let winResult = document.createElement('p');
+                alert('You win!');
+                let finalScore = document.createElement('p');
+                //winResult.innerText = 'You win!';
+                finalScore.innerText = `Final Score: You: ${playerScore} Computer: ${computerScore}`;
+                //results.appendChild(winResult);
+                results.appendChild(finalScore);
                 playerScore = 0;
                 computerScore = 0;
             }
         } else if (roundResult !== 'win' && roundResult === 'lose') {
             computerScore = ++computerScore;
-            results.append(`Your Score: ${playerScore}, Computer Score: ${computerScore}`);
+            displayScore.innerText = `Your Score: ${playerScore}, Computer Score: ${computerScore}`;
+            results.appendChild(displayScore);
             if (computerScore === 5) {
-                results.append('You lose!');
-                results.append(`Final Score: You: ${playerScore} Computer: ${computerScore}`);
+                //let loseResult = document.createElement('p');
+                alert('You Lose!')
+                let finalScore = document.createElement('p')
+                //loseResult.innerText = 'You lose!'
+                finalScore.innerText = `Final Score: You: ${playerScore} Computer: ${computerScore}` 
+                //results.appendChild(loseResult);
+                results.appendChild(finalScore);
                 playerScore = 0;
                 computerScore = 0;
             }
         } else {
-            results.append(`The scores remain: ${playerScore} ${computerScore}`);           
+            displayScore.innerText = `The scores remain: ${playerScore} ${computerScore}`;
+            results.appendChild(displayScore);
+
         }
         
 }

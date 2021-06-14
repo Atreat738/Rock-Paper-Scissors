@@ -1,0 +1,29 @@
+body {
+    text-align: center;
+}
+
+button {
+    margin: 10px 20px;
+    font-size: 1.5em;
+    padding: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#results {
+    font-size: 1.3rem;
+}
+/* 
+#results p:nth-of-type(2) {
+    border: 2px solid black;
+} */
+#results p:nth-of-type(3) {
+    margin: 0 auto;
+    max-width: 300px;
+    font-size: 1.75em;
+    border: 5px solid green;
+    background-color: black;
+    color: white;
+}
