@@ -1,3 +1,8 @@
+const playerChoiceDisplay = document.querySelector('#playerChoiceDisplay p');
+const computerChoiceDisplay = document.querySelector('#computerChoiceDisplay p');
+const results = document.querySelector('#results');
+const resultsDisplay = document.querySelector('#results p');
+
 //commputerPlay creates a random selection of rock, paper, or scissors. 
 function computerPlay() {
     let result = Math.floor(Math.random() * 3);
@@ -13,40 +18,28 @@ function computerPlay() {
 //playRound asks user to type "rock, paper or scissors"
 //the input should not be case sensitive. 
 //A message will tell the user of the results. 
-
 function playRound(playerSelection, computerSelection) {
-    results.innerText = `You chose: ${playerSelection[0].toUpperCase()}${playerSelection.slice(1)} Computer chose: ${computerSelection}.`;
+    playerChoiceDisplay.innerText = `${playerSelection[0].toUpperCase()}${playerSelection.slice(1)}`
+    computerChoiceDisplay.innerText = `${computerSelection}.`;
     if (computerSelection.toUpperCase() == playerSelection.toUpperCase()) {
-        let newP = document.createElement('p')
-        newP.innerText = 'It\'s a tie!';
-        results.appendChild(newP);
+        resultsDisplay.innerText = 'It\'s a tie!';
         return 'tie';
     }
     else if (playerSelection.toUpperCase() == 'ROCK' && computerSelection == 'Scissors') {
-        let newP = document.createElement('p')
-        newP.innerText = 'You won! Rock beats scissors!';
-        results.appendChild(newP);
+        resultsDisplay.innerText = 'You won! Rock beats scissors!';
         return 'win';
     } else if (playerSelection.toUpperCase() == 'PAPER' && computerSelection == 'Rock') {
-        let newP = document.createElement('p')
-        newP.innerText = 'You won! Paper covers rock!';
-        results.appendChild(newP);
+        resultsDisplay.innerText = 'You won! Paper covers rock!';
         return 'win';
     } else if (playerSelection.toUpperCase() == 'SCISSORS' && computerSelection == 'Paper') {
-        let newP = document.createElement('p')
-        newP.innerText = 'You won! Scissors cuts paper!';
-        results.appendChild(newP);
+        resultsDisplay.innerText = 'You won! Scissors cuts paper!';
         return 'win';
     } else if(playerSelection.toUpperCase() !== 'ROCK' && playerSelection.toUpperCase() !== 'PAPER' && playerSelection.toUpperCase() !== 'SCISSORS') {
-        let newP = document.createElement('p')
-        newP.innerText = 'Invalid Input!';
-        results.appendChild(newP);
+        resultsDisplay.innerText = 'Invalid Input!';
         return null;
     }
      else {
-        let newP = document.createElement('p')
-        newP.innerText = 'You lose! Try again!';
-        results.appendChild(newP);
+        resultsDisplay.innerText = 'You lose! Try again!';
         return 'lose';
     }
 }
@@ -81,50 +74,40 @@ scissorsButton.addEventListener('click', function(e) {
         gameScore(roundPoint);
 })
 
-const results = document.querySelector('#results');
 
 //game will begin keeping track of the scores
 //game will add a point to the winner's score each round
 //game will update the scoreboard
+const playerScoreDisplay = document.querySelector('#playerScoreDisplay');
+const computerScoreDisplay = document.querySelector('#computerScoreDisplay');
 let playerScore = 0;
 let computerScore = 0;
 function gameScore(roundPoint) {
         let roundResult = roundPoint;
-        let displayScore = document.createElement('p');
         if (roundResult === 'win') {
+            let updateScore = document.querySelector('#playerScoreDisplay p');
             playerScore = ++playerScore;
-            displayScore.innerText = `Your Score: ${playerScore}, Computer Score: ${computerScore}`;
-            results.appendChild(displayScore);
+            updateScore.innerText = `${playerScore}`;
             if (playerScore === 5) {
-                //let winResult = document.createElement('p');
                 alert('You win!');
                 let finalScore = document.createElement('p');
-                //winResult.innerText = 'You win!';
                 finalScore.innerText = `Final Score: You: ${playerScore} Computer: ${computerScore}`;
-                //results.appendChild(winResult);
                 results.appendChild(finalScore);
                 playerScore = 0;
                 computerScore = 0;
             }
         } else if (roundResult !== 'win' && roundResult === 'lose') {
+            let updateScore = document.querySelector('#computerScoreDisplay p');
             computerScore = ++computerScore;
-            displayScore.innerText = `Your Score: ${playerScore}, Computer Score: ${computerScore}`;
-            results.appendChild(displayScore);
+            updateScore.innerText = `${computerScore}`;
             if (computerScore === 5) {
-                //let loseResult = document.createElement('p');
                 alert('You Lose!')
                 let finalScore = document.createElement('p')
-                //loseResult.innerText = 'You lose!'
                 finalScore.innerText = `Final Score: You: ${playerScore} Computer: ${computerScore}` 
-                //results.appendChild(loseResult);
                 results.appendChild(finalScore);
                 playerScore = 0;
                 computerScore = 0;
             }
-        } else {
-            displayScore.innerText = `The scores remain: ${playerScore} ${computerScore}`;
-            results.appendChild(displayScore);
-
-        }
+        } 
         
 }
