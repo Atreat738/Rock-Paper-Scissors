@@ -2,7 +2,11 @@ const playerChoiceDisplay = document.querySelector('#playerChoiceDisplay p');
 const computerChoiceDisplay = document.querySelector('#computerChoiceDisplay p');
 const results = document.querySelector('#results');
 const resultsDisplay = document.querySelector('#results p');
+const resetButton = document.querySelector('#resetButton');
 
+let isGameOver = false;
+resetButton.style.display = 'none';
+finalScore.style.display = 'none';
 //commputerPlay creates a random selection of rock, paper, or scissors. 
 function computerPlay() {
     let result = Math.floor(Math.random() * 3);
@@ -48,7 +52,6 @@ function playRound(playerSelection, computerSelection) {
 const rockButton = document.querySelector('#rock');
 rockButton.addEventListener('click', function(e) {
     let playerSelection = 'Rock';
-        playerSelection;
     let computerSelection = computerPlay();
     let roundPoint = playRound(playerSelection, computerSelection);
         roundPoint;
@@ -58,7 +61,6 @@ rockButton.addEventListener('click', function(e) {
 const paperButton = document.querySelector('#paper');
 paperButton.addEventListener('click', function(e) {
     let playerSelection = 'Paper';
-        playerSelection;
     let computerSelection = computerPlay();
     let roundPoint = playRound(playerSelection, computerSelection);
         roundPoint;
@@ -83,31 +85,62 @@ const computerScoreDisplay = document.querySelector('#computerScoreDisplay');
 let playerScore = 0;
 let computerScore = 0;
 function gameScore(roundPoint) {
+    if(isGameOver !== true) {
         let roundResult = roundPoint;
         if (roundResult === 'win') {
-            let updateScore = document.querySelector('#playerScoreDisplay p');
+            let updateScore1 = document.querySelector('#playerScoreDisplay p');
             playerScore = ++playerScore;
-            updateScore.innerText = `${playerScore}`;
+            updateScore1.innerText = `${playerScore}`;
             if (playerScore === 5) {
                 alert('You win!');
-                let finalScore = document.createElement('p');
+                let finalScore = document.querySelector('#finalScore');
                 finalScore.innerText = `Final Score: You: ${playerScore} Computer: ${computerScore}`;
-                results.appendChild(finalScore);
-                playerScore = 0;
-                computerScore = 0;
+                finalScore.style.display = 'block';
+                isGameOver = true;
+                askReset();
             }
         } else if (roundResult !== 'win' && roundResult === 'lose') {
-            let updateScore = document.querySelector('#computerScoreDisplay p');
+            let updateScore2 = document.querySelector('#computerScoreDisplay p');
             computerScore = ++computerScore;
-            updateScore.innerText = `${computerScore}`;
+            updateScore2.innerText = `${computerScore}`;
             if (computerScore === 5) {
                 alert('You Lose!')
-                let finalScore = document.createElement('p')
+                let finalScore = document.querySelector('#finalScore')
                 finalScore.innerText = `Final Score: You: ${playerScore} Computer: ${computerScore}` 
-                results.appendChild(finalScore);
-                playerScore = 0;
-                computerScore = 0;
+                finalScore.style.display = 'block';
+                isGameOver = true;
+                askReset();
             }
         } 
+    }
         
 }
+
+function askReset() {
+    if (isGameOver == true) {
+        resetButton.style.display = 'block';
+        rockButton.disabled = true;
+        paperButton.disabled = true;
+        scissorsButton.disabled = true;
+    } 
+}
+
+
+resetButton.addEventListener('click', function(e) {
+    let updateScore1 = document.querySelector('#playerScoreDisplay p');
+    let updateScore2 = document.querySelector('#computerScoreDisplay p');
+    playerScore = 0;
+    computerScore = 0;
+    updateScore1.innerText = '0';
+    updateScore2.innerText = '0';
+    playerChoiceDisplay.textContent = "";
+    computerChoiceDisplay.textContent = "";
+    resultsDisplay.innerText = "";
+    rockButton.disabled = false;
+    paperButton.disabled = false;
+    scissorsButton.disabled = false;
+    resetButton.style.display = 'none';
+    finalScore.style.display = 'none';
+    finalScore.innerText = "";
+    isGameOver = false;
+});

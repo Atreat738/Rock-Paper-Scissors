@@ -37,11 +37,18 @@ button:hover {
     font-size: 1.2rem;
 }
 
- #results p:nth-of-type(2) {
+ #finalScore {
     margin: 0 auto;
     max-width: 300px;
     font-size: 1.75em;
     border: 5px solid green;
     background-color: black;
     color: white;
+}
+
+#resetButton {
+    display: block;
+    background-color: black;
+    color: white;
+    border: 3px solid green;
 }
