@@ -6,8 +6,8 @@ body {
 }
 
 button {
-    margin: 10px 20px;
     font-size: 1.5em;
+    margin: 10px 20px;
     padding: 5px;
 }
 
@@ -21,8 +21,8 @@ button:hover {
 
 #scoreBoard {
     display: flex;
-    justify-content: space-between;
     font-size: 1.5rem;
+    justify-content: space-between;
 }
 
 #playerScoreDisplay {
@@ -38,17 +38,17 @@ button:hover {
 }
 
  #finalScore {
+    background-color: black;
+    border: 5px solid green;
+    color: white;
+    font-size: 1.75em;
     margin: 0 auto;
     max-width: 300px;
-    font-size: 1.75em;
-    border: 5px solid green;
-    background-color: black;
-    color: white;
 }
 
 #resetButton {
-    display: block;
     background-color: black;
-    color: white;
     border: 3px solid green;
+    color: white;
+    display: block;
 }
